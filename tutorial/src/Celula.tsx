@@ -4,6 +4,7 @@ type ValorCelula = 0 | 1 | 2;
 
 type Props = {
   valor: ValorCelula;
+  jogador: 1 | 2;
 };
 
 export default function Celula(props: Props) {
@@ -18,7 +19,7 @@ export default function Celula(props: Props) {
 
   const alterarValor = () => {
     if (valor === 0) {
-      setValor(((valor + 1) % 3) as ValorCelula);
+      setValor(props.jogador);
     }
   };
 
