@@ -1,5 +1,7 @@
+import { ValorCelula } from "../types";
+
 export default function getClasseJogador(
-  valor: 0 | 1 | 2
+  valor: ValorCelula
 ): "" | "xiszinho" | "bolinha" {
   switch (valor) {
     case 0:

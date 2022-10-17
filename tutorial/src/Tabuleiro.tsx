@@ -1,38 +1,52 @@
 import { useState } from "react";
 import Celula from "./Celula";
+import { Jogadores, TabuleiroJogo } from "./types";
+import calcularVencedor from "./utils/calcularVencedor";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
-type Jogadores = 1 | 2;
-
-const tabuleiro = [0, 0, 0, 0, 0, 0, 0, 0, 0] as const;
-
 export default function Tabuleiro() {
+  const [celulasVitoria, setCelulasVitoria] = useState<number[]>([]);
+  const [encerrado, setEncerrado] = useState(false);
+  const [tabuleiro, setTabuleiro] = useState<TabuleiroJogo>([
+    0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
   const [jogador, setJogador] = useState<Jogadores>(1);
 
-  const proximoTurno = () => {
-    if (jogador === 1) {
-      setJogador(2);
+  const marcarPosicao = (posicao: number) => {
+    if (encerrado) return;
+
+    const novoTabuleiro: TabuleiroJogo = [...tabuleiro];
+    novoTabuleiro[posicao] = jogador;
+    setTabuleiro(novoTabuleiro);
+    const resultado = calcularVencedor(novoTabuleiro);
+    if (resultado === null) {
+      if (jogador === 1) {
+        setJogador(2);
+      } else {
+        setJogador(1);
+      }
     } else {
-      setJogador(1);
+      setEncerrado(true);
+      setCelulasVitoria(resultado.combinacao);
     }
   };
 
   return (
-    <>
+    <div className={`jogo ${encerrado && "encerrado"}`}>
       <div className="tabuleiro">
         {tabuleiro.map((celula, i) => (
           <Celula
-            onClick={proximoTurno}
-            jogador={jogador}
+            celulaVitoria={celulasVitoria.includes(i)}
+            onMarcacao={() => marcarPosicao(i)}
             valor={celula}
             key={i}
           />
         ))}
       </div>
       <div className={`jogador-atual ${getClasseJogador(jogador)}`}>
-        Jogador Atual: {valor2Jogador(jogador)}
+        {encerrado ? "Vencedor:" : "Jogador Atual:"} {valor2Jogador(jogador)}
       </div>
-    </>
+    </div>
   );
 }

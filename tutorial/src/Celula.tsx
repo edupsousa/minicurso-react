@@ -1,32 +1,34 @@
 import { useState } from "react";
+import { ValorCelula } from "./types";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
-type ValorCelula = 0 | 1 | 2;
-
 type Props = {
   valor: ValorCelula;
-  jogador: 1 | 2;
-  onClick: () => void;
+  celulaVitoria: boolean;
+  onMarcacao: () => void;
 };
 
 export default function Celula(props: Props) {
-  const [valor, setValor] = useState(props.valor);
-
-  const texto = valor2Jogador(valor);
+  const texto = valor2Jogador(props.valor);
 
   const alterarValor = () => {
-    if (valor === 0) {
-      setValor(props.jogador);
-      props.onClick();
+    if (props.valor === 0) {
+      props.onMarcacao();
     }
   };
 
-  const classes = ["celula", getClasseJogador(valor)];
+  const classes = ["celula"];
+  if (props.valor !== 0) {
+    classes.push(getClasseJogador(props.valor));
+  }
+  if (props.celulaVitoria) {
+    classes.push("vitoria");
+  }
 
   return (
     <div className={classes.join(" ")} onClick={alterarValor}>
-      {texto}
+      <span>{texto}</span>
     </div>
   );
 }

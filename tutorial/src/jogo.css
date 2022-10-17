@@ -73,3 +73,17 @@
   font-family: var(--fonte-padrao);
   font-size: 2rem;
 }
+
+.celula.vitoria {
+  /* Destacar a celula vitoriosa */
+  color: #0f0;
+}
+
+.jogo.encerrado .tabuleiro .celula {
+  /* Desabilitar o cursor de "mãozinha" se o jogo estiver encerrado */
+  cursor: not-allowed;
+}
+
+.jogo.encerrado .tabuleiro .celula:not(.vitoria) span {
+  opacity: 0.3;
+}

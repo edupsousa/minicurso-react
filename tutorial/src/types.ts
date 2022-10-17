@@ -1,0 +1,15 @@
+export type CelulaVazia = 0;
+export type Jogadores = 1 | 2;
+export type ValorCelula = CelulaVazia | Jogadores;
+
+export type TabuleiroJogo = [
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula,
+  ValorCelula
+];

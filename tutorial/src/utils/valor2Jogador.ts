@@ -1,4 +1,6 @@
-export default function valor2Jogador(valor: 0 | 1 | 2): "" | "X" | "O" {
+import { ValorCelula } from "../types";
+
+export default function valor2Jogador(valor: ValorCelula): "" | "X" | "O" {
   switch (valor) {
     case 0:
       return "";
