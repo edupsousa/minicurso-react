@@ -13,3 +13,10 @@ export type TabuleiroJogo = [
   ValorCelula,
   ValorCelula
 ];
+
+export type EstadoJogo = {
+  tabuleiro: TabuleiroJogo;
+  jogador: Jogadores;
+  encerrado: boolean;
+  celulasVitoria: number[];
+};

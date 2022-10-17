@@ -1,43 +1,27 @@
 import { useState } from "react";
 import Controles from "./Controles";
+import marcarCelula from "./estado/marcarCelula";
+import obterEstadoInicial from "./estado/obterEstadoInicial";
 import Placar from "./Placar";
 import Tabuleiro from "./Tabuleiro";
-import { Jogadores, TabuleiroJogo } from "./types";
-import calcularVencedor from "./utils/calcularVencedor";
+import { EstadoJogo } from "./types";
 
 export default function Jogo() {
-  const [celulasVitoria, setCelulasVitoria] = useState<number[]>([]);
-  const [encerrado, setEncerrado] = useState(false);
-  const [tabuleiro, setTabuleiro] = useState<TabuleiroJogo>([
-    0, 0, 0, 0, 0, 0, 0, 0, 0,
+  const [estadoJogo, setEstadoJogo] = useState<EstadoJogo[]>([
+    obterEstadoInicial(),
   ]);
-  const [jogador, setJogador] = useState<Jogadores>(1);
+  const getEstadoAtual = () => estadoJogo[estadoJogo.length - 1];
 
   const reiniciarJogo = () => {
-    setCelulasVitoria([]);
-    setEncerrado(false);
-    setTabuleiro([0, 0, 0, 0, 0, 0, 0, 0, 0]);
-    setJogador(1);
+    setEstadoJogo([obterEstadoInicial()]);
   };
 
-  const marcarPosicao = (posicao: number) => {
-    if (encerrado) return;
-
-    const novoTabuleiro: TabuleiroJogo = [...tabuleiro];
-    novoTabuleiro[posicao] = jogador;
-    setTabuleiro(novoTabuleiro);
-    const resultado = calcularVencedor(novoTabuleiro);
-    if (resultado === null) {
-      if (jogador === 1) {
-        setJogador(2);
-      } else {
-        setJogador(1);
-      }
-    } else {
-      setEncerrado(true);
-      setCelulasVitoria(resultado.combinacao);
-    }
+  const voltar = () => {
+    if (estadoJogo.length === 1) return;
+    setEstadoJogo(estadoJogo.slice(0, -1));
   };
+
+  const { encerrado, jogador, tabuleiro, celulasVitoria } = getEstadoAtual();
 
   return (
     <div className={`jogo ${encerrado && "encerrado"}`}>
@@ -45,9 +29,14 @@ export default function Jogo() {
       <Tabuleiro
         tabuleiro={tabuleiro}
         celulasVitoria={celulasVitoria}
-        marcarPosicao={marcarPosicao}
+        marcarPosicao={(posicao) =>
+          setEstadoJogo((atual) => [
+            ...atual,
+            marcarCelula(atual[atual.length - 1], posicao),
+          ])
+        }
       />
-      <Controles reiniciarJogo={reiniciarJogo} />
+      <Controles voltar={voltar} reiniciarJogo={reiniciarJogo} />
     </div>
   );
 }
