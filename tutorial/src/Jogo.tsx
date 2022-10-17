@@ -1,11 +1,9 @@
 import { useState } from "react";
-import Celula from "./Celula";
+import Controles from "./Controles";
 import Placar from "./Placar";
 import Tabuleiro from "./Tabuleiro";
 import { Jogadores, TabuleiroJogo } from "./types";
 import calcularVencedor from "./utils/calcularVencedor";
-import getClasseJogador from "./utils/getClasseJogador";
-import valor2Jogador from "./utils/valor2Jogador";
 
 export default function Jogo() {
   const [celulasVitoria, setCelulasVitoria] = useState<number[]>([]);
@@ -14,6 +12,13 @@ export default function Jogo() {
     0, 0, 0, 0, 0, 0, 0, 0, 0,
   ]);
   const [jogador, setJogador] = useState<Jogadores>(1);
+
+  const reiniciarJogo = () => {
+    setCelulasVitoria([]);
+    setEncerrado(false);
+    setTabuleiro([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+    setJogador(1);
+  };
 
   const marcarPosicao = (posicao: number) => {
     if (encerrado) return;
@@ -42,6 +47,7 @@ export default function Jogo() {
         celulasVitoria={celulasVitoria}
         marcarPosicao={marcarPosicao}
       />
+      <Controles reiniciarJogo={reiniciarJogo} />
     </div>
   );
 }

@@ -1,9 +1,6 @@
-:root {
-  /* Fonte sem serifa */
-  --fonte-padrao: "Roboto", sans-serif;
-}
-
 .jogo {
+  /* Fonte sem serifa */
+  font-family: "Roboto", sans-serif;
   /* Centralizar na página */
   position: fixed;
   top: 50%;
@@ -14,14 +11,11 @@
 .placar {
   /* Centralizar o texto do placar acima do tabuleiro */
   margin-bottom: 1rem;
-  font-family: var(--fonte-padrao);
   font-size: 2rem;
   text-align: center;
 }
 
 .tabuleiro {
-  font-family: var(--fonte-padrao);
-
   /* Tamanho do tabuleiro */
   width: 500px;
   height: 500px;
@@ -84,5 +78,31 @@
 }
 
 .jogo.encerrado .tabuleiro .celula:not(.vitoria) span {
+  /* Diminuir visibilidade do texto das celulas que não são vitoriosas */
   opacity: 0.3;
+}
+
+.controles {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.botao {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.5) 2px 2px 10px;
+}
+
+.botao.reiniciar {
+  background-color: #deb887;
+}
+
+.botao.reiniciar:hover {
+  background-color: #b8860b;
 }
