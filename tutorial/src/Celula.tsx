@@ -9,13 +9,26 @@ type Props = {
 export default function Celula(props: Props) {
   const [valor, setValor] = useState(props.valor);
 
-  const texto = valor === 1 ? "X" : valor === 2 ? "O" : "";
+  let texto = "";
+  if (valor === 1) {
+    texto = "X";
+  } else if (valor === 2) {
+    texto = "O";
+  }
+
   const alterarValor = () => {
     setValor(((valor + 1) % 3) as ValorCelula);
   };
 
+  const classes = ["celula"];
+  if (valor === 1) {
+    classes.push("xiszinho");
+  } else if (valor === 2) {
+    classes.push("bolinha");
+  }
+
   return (
-    <div className="celula" onClick={alterarValor}>
+    <div className={classes.join(" ")} onClick={alterarValor}>
       {texto}
     </div>
   );

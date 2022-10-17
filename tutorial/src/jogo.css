@@ -42,3 +42,15 @@
   border-top: none;
   border-bottom: none;
 }
+
+.celula.bolinha {
+  /* Estilo da célula com a bolinha */
+  color: #f00;
+  cursor: not-allowed;
+}
+
+.celula.xiszinho {
+  /* Estilo da célula com o xiszinho */
+  color: #00f;
+  cursor: not-allowed;
+}
