@@ -17,7 +17,9 @@ export default function Celula(props: Props) {
   }
 
   const alterarValor = () => {
-    setValor(((valor + 1) % 3) as ValorCelula);
+    if (valor === 0) {
+      setValor(((valor + 1) % 3) as ValorCelula);
+    }
   };
 
   const classes = ["celula"];
