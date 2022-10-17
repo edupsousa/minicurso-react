@@ -1,0 +1,42 @@
+.tabuleiro {
+  /* Fonte sem serifa */
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  /* Tamanho do tabuleiro */
+  width: 500px;
+  height: 500px;
+
+  /* Centralizar na página */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  /* Mostrar células em um grid 3x3 */
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.celula {
+  /* Centralizar o texto da célula */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Tamanho da fonte na célula */
+  font-size: 4rem;
+  /* Borda da célula */
+  border: 1px solid #000;
+}
+
+.celula:nth-child(3n-1) {
+  /* Remover borda das celulas da segunda coluna para evitar borda duplicada */
+  border-left: none;
+  border-right: none;
+}
+
+.celula:nth-child(n + 4):nth-child(-n + 6) {
+  /* Remover borda das celulas da segunda para evitar borda duplicada */
+  border-top: none;
+  border-bottom: none;
+}
