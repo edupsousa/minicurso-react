@@ -5,6 +5,7 @@ type ValorCelula = 0 | 1 | 2;
 type Props = {
   valor: ValorCelula;
   jogador: 1 | 2;
+  onClick: () => void;
 };
 
 export default function Celula(props: Props) {
@@ -20,6 +21,7 @@ export default function Celula(props: Props) {
   const alterarValor = () => {
     if (valor === 0) {
       setValor(props.jogador);
+      props.onClick();
     }
   };
 
