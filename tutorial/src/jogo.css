@@ -27,6 +27,8 @@
   font-size: 4rem;
   /* Borda da célula */
   border: 1px solid #000;
+  /* Cursor de "mãozinha" */
+  cursor: pointer;
 }
 
 .celula:nth-child(3n-1) {
