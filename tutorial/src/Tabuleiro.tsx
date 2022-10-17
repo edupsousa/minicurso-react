@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Celula from "./Celula";
+import getClasseJogador from "./utils/getClasseJogador";
+import valor2Jogador from "./utils/valor2Jogador";
 
 type Jogadores = 1 | 2;
 
@@ -17,15 +19,20 @@ export default function Tabuleiro() {
   };
 
   return (
-    <div className="tabuleiro">
-      {tabuleiro.map((celula, i) => (
-        <Celula
-          onClick={proximoTurno}
-          jogador={jogador}
-          valor={celula}
-          key={i}
-        />
-      ))}
-    </div>
+    <>
+      <div className="tabuleiro">
+        {tabuleiro.map((celula, i) => (
+          <Celula
+            onClick={proximoTurno}
+            jogador={jogador}
+            valor={celula}
+            key={i}
+          />
+        ))}
+      </div>
+      <div className={`jogador-atual ${getClasseJogador(jogador)}`}>
+        Jogador Atual: {valor2Jogador(jogador)}
+      </div>
+    </>
   );
 }

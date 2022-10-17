@@ -1,6 +1,10 @@
-.tabuleiro {
+:root {
   /* Fonte sem serifa */
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  --fonte-padrao: "Roboto", sans-serif;
+}
+
+.tabuleiro {
+  font-family: var(--fonte-padrao);
 
   /* Tamanho do tabuleiro */
   width: 500px;
@@ -43,14 +47,29 @@
   border-bottom: none;
 }
 
+.celula.xiszinho,
 .celula.bolinha {
-  /* Estilo da célula com a bolinha */
-  color: #f00;
+  /* Desabilitar o cursor de "mãozinha" se a celula estiver preenchida */
   cursor: not-allowed;
 }
 
-.celula.xiszinho {
-  /* Estilo da célula com o xiszinho */
+.bolinha {
+  /* Mudar cor dos elementos com a classe do jogador bolinha */
+  color: #f00;
+}
+
+.xiszinho {
+  /* Mudar cor dos elementos com a classe do jogador xiszinho */
   color: #00f;
-  cursor: not-allowed;
+}
+
+.jogador-atual {
+  /* Centralizar o texto do jogador atual na parte superior da tela */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 1rem;
+  font-family: var(--fonte-padrao);
+  font-size: 2rem;
 }
