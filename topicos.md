@@ -11,6 +11,12 @@
 - O que preciso saber para usar React?
 - Como preparar o ambiente de desenvolvimento?
 
+Criar aplicação com Vite.JS
+
+```bash
+npm create vite@latest
+```
+
 ## JSX
 
 - O que é JSX?
