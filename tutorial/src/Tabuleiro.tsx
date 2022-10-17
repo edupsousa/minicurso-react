@@ -34,6 +34,9 @@ export default function Tabuleiro() {
 
   return (
     <div className={`jogo ${encerrado && "encerrado"}`}>
+      <div className={`placar ${getClasseJogador(jogador)}`}>
+        {encerrado ? "Vencedor:" : "Jogador Atual:"} {valor2Jogador(jogador)}
+      </div>
       <div className="tabuleiro">
         {tabuleiro.map((celula, i) => (
           <Celula
@@ -43,9 +46,6 @@ export default function Tabuleiro() {
             key={i}
           />
         ))}
-      </div>
-      <div className={`jogador-atual ${getClasseJogador(jogador)}`}>
-        {encerrado ? "Vencedor:" : "Jogador Atual:"} {valor2Jogador(jogador)}
       </div>
     </div>
   );

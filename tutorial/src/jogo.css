@@ -3,18 +3,28 @@
   --fonte-padrao: "Roboto", sans-serif;
 }
 
+.jogo {
+  /* Centralizar na página */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.placar {
+  /* Centralizar o texto do placar acima do tabuleiro */
+  margin-bottom: 1rem;
+  font-family: var(--fonte-padrao);
+  font-size: 2rem;
+  text-align: center;
+}
+
 .tabuleiro {
   font-family: var(--fonte-padrao);
 
   /* Tamanho do tabuleiro */
   width: 500px;
   height: 500px;
-
-  /* Centralizar na página */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 
   /* Mostrar células em um grid 3x3 */
   display: grid;
@@ -61,17 +71,6 @@
 .xiszinho {
   /* Mudar cor dos elementos com a classe do jogador xiszinho */
   color: #00f;
-}
-
-.jogador-atual {
-  /* Centralizar o texto do jogador atual na parte superior da tela */
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  margin-top: 1rem;
-  font-family: var(--fonte-padrao);
-  font-size: 2rem;
 }
 
 .celula.vitoria {
