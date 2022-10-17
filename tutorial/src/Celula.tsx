@@ -3,5 +3,6 @@ type Props = {
 };
 
 export default function Celula({ valor }: Props) {
-  return <div className="celula">{valor}</div>;
+  const texto = valor === 1 ? "X" : valor === 2 ? "O" : "";
+  return <div className="celula">{texto}</div>;
 }
