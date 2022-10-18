@@ -165,3 +165,20 @@ body {
 .celula.vitoria span {
   animation: girar 1s ease-in-out;
 }
+
+@keyframes pulsar {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.jogo:not(.encerrado) .celula.bolinha span,
+.jogo:not(.encerrado) .celula.xiszinho span {
+  animation: pulsar 0.5s ease-in-out;
+}
