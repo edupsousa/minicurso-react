@@ -147,3 +147,21 @@ body {
 .botao.reiniciar:hover {
   background-color: var(--viridian-green);
 }
+
+/* Animação */
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.celula.vitoria span {
+  animation: girar 1s ease-in-out;
+}
