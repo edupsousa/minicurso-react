@@ -8,8 +8,12 @@ type Props = {
 };
 
 export default function Placar({ jogador, mostrarVencedor }: Props) {
+  const classes = ["placar", getClasseJogador(jogador)];
+  if (mostrarVencedor) {
+    classes.push("vencedor");
+  }
   return (
-    <div className={`placar ${getClasseJogador(jogador)}`}>
+    <div className={classes.join(" ")}>
       {mostrarVencedor ? "Vencedor:" : "Jogador Atual:"}{" "}
       {valor2Jogador(jogador)}
     </div>
