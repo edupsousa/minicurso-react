@@ -1,28 +1,27 @@
-import { useState } from "react";
-import { ValorCelula } from "./types";
+import { useContextoJogo } from "./ContextoJogo";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
 type Props = {
-  valor: ValorCelula;
-  celulaVitoria: boolean;
-  onMarcacao: () => void;
+  posicao: number;
 };
 
-export default function Celula(props: Props) {
-  const texto = valor2Jogador(props.valor);
+export default function Celula({ posicao }: Props) {
+  const [{ tabuleiro, celulasVitoria }, { marcar }] = useContextoJogo();
+  const valor = tabuleiro[posicao];
+  const texto = valor2Jogador(valor);
 
   const alterarValor = () => {
-    if (props.valor === 0) {
-      props.onMarcacao();
+    if (valor === 0) {
+      marcar(posicao);
     }
   };
 
   const classes = ["celula"];
-  if (props.valor !== 0) {
-    classes.push(getClasseJogador(props.valor));
+  if (valor !== 0) {
+    classes.push(getClasseJogador(valor));
   }
-  if (props.celulaVitoria) {
+  if (celulasVitoria.includes(posicao)) {
     classes.push("vitoria");
   }
 

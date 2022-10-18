@@ -1,21 +1,16 @@
-import { Jogadores } from "./types";
+import { useContextoJogo } from "./ContextoJogo";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
-type Props = {
-  jogador: Jogadores;
-  mostrarVencedor: boolean;
-};
-
-export default function Placar({ jogador, mostrarVencedor }: Props) {
+export default function Placar() {
+  const [{ jogador, encerrado }] = useContextoJogo();
   const classes = ["placar", getClasseJogador(jogador)];
-  if (mostrarVencedor) {
+  if (encerrado) {
     classes.push("vencedor");
   }
   return (
     <div className={classes.join(" ")}>
-      {mostrarVencedor ? "Vencedor:" : "Jogador Atual:"}{" "}
-      {valor2Jogador(jogador)}
+      {encerrado ? "Vencedor:" : "Jogador Atual:"} {valor2Jogador(jogador)}
     </div>
   );
 }
