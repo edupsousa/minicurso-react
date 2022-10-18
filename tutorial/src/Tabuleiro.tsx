@@ -1,26 +1,13 @@
 import Celula from "./Celula";
-import { TabuleiroJogo } from "./types";
+import { useContextoJogo } from "./ContextoJogo";
 
-type Props = {
-  tabuleiro: TabuleiroJogo;
-  celulasVitoria: number[];
-  marcarPosicao: (posicao: number) => void;
-};
+export default function Tabuleiro() {
+  const [{ tabuleiro }] = useContextoJogo();
 
-export default function Tabuleiro({
-  tabuleiro,
-  celulasVitoria,
-  marcarPosicao,
-}: Props) {
   return (
     <div className="tabuleiro">
-      {tabuleiro.map((celula, i) => (
-        <Celula
-          celulaVitoria={celulasVitoria.includes(i)}
-          onMarcacao={() => marcarPosicao(i)}
-          valor={celula}
-          key={i}
-        />
+      {tabuleiro.map((_, i) => (
+        <Celula posicao={i} key={i} />
       ))}
     </div>
   );
