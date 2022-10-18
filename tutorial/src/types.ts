@@ -20,3 +20,9 @@ export type EstadoJogo = {
   encerrado: boolean;
   celulasVitoria: number[];
 };
+
+export type AcoesJogo = {
+  marcar: (posicao: number) => void;
+  voltar: () => void;
+  reiniciar: () => void;
+};

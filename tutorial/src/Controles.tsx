@@ -1,7 +1,7 @@
-import { useContextoJogo } from "./ContextoJogo";
+import useJogo from "./estado/useJogo";
 
 export default function Controles() {
-  const [, { voltar, reiniciar }] = useContextoJogo();
+  const { voltar, reiniciar } = useJogo();
   return (
     <div className="controles">
       <button className="botao voltar" onClick={voltar}>

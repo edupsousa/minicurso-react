@@ -1,9 +1,9 @@
-import { useContextoJogo } from "./ContextoJogo";
+import useJogo from "./estado/useJogo";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
 export default function Placar() {
-  const [{ jogador, encerrado }] = useContextoJogo();
+  const { jogador, encerrado } = useJogo();
   const classes = ["placar", getClasseJogador(jogador)];
   if (encerrado) {
     classes.push("vencedor");

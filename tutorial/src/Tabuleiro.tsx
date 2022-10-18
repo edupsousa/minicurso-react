@@ -1,14 +1,17 @@
 import Celula from "./Celula";
-import { useContextoJogo } from "./ContextoJogo";
 
 export default function Tabuleiro() {
-  const [{ tabuleiro }] = useContextoJogo();
-
   return (
     <div className="tabuleiro">
-      {tabuleiro.map((_, i) => (
-        <Celula posicao={i} key={i} />
-      ))}
+      <Celula posicao={0} />
+      <Celula posicao={1} />
+      <Celula posicao={2} />
+      <Celula posicao={3} />
+      <Celula posicao={4} />
+      <Celula posicao={5} />
+      <Celula posicao={6} />
+      <Celula posicao={7} />
+      <Celula posicao={8} />
     </div>
   );
 }

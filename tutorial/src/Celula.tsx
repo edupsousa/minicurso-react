@@ -1,4 +1,4 @@
-import { useContextoJogo } from "./ContextoJogo";
+import useJogo from "./estado/useJogo";
 import getClasseJogador from "./utils/getClasseJogador";
 import valor2Jogador from "./utils/valor2Jogador";
 
@@ -7,7 +7,7 @@ type Props = {
 };
 
 export default function Celula({ posicao }: Props) {
-  const [{ tabuleiro, celulasVitoria }, { marcar }] = useContextoJogo();
+  const { tabuleiro, celulasVitoria, marcar } = useJogo();
   const valor = tabuleiro[posicao];
   const texto = valor2Jogador(valor);
 
