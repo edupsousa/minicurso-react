@@ -11,6 +11,9 @@ export default function Jogo() {
     obterEstadoInicial(),
   ]);
   const getEstadoAtual = () => estadoJogo[estadoJogo.length - 1];
+  const empilharNovoEstado = (novoEstado: EstadoJogo) => {
+    setEstadoJogo((pilha) => [...pilha, novoEstado]);
+  };
 
   const reiniciarJogo = () => {
     setEstadoJogo([obterEstadoInicial()]);
@@ -29,12 +32,10 @@ export default function Jogo() {
       <Tabuleiro
         tabuleiro={tabuleiro}
         celulasVitoria={celulasVitoria}
-        marcarPosicao={(posicao) =>
-          setEstadoJogo((atual) => [
-            ...atual,
-            marcarCelula(atual[atual.length - 1], posicao),
-          ])
-        }
+        marcarPosicao={(posicao) => {
+          const novoEstado = marcarCelula(getEstadoAtual(), posicao);
+          empilharNovoEstado(novoEstado);
+        }}
       />
       <Controles voltar={voltar} reiniciarJogo={reiniciarJogo} />
     </div>
